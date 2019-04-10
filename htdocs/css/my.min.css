@@ -5851,3 +5851,21 @@ a.rm-button.rm-clicked .rm-button-face-2 {
     border-top: 1px solid #ccc;
     background-image: linear-gradient(to right, #fff, #ccc);
 }
+
+body {
+    font-family: Arial, Verdana, sans-serif;
+}
+
+a,
+a:visited {
+    color: #787cb5;
+    text-decoration: none;
+}
+
+a:hover {
+    color: salmon;
+}
+
+.region-footer a {
+    color: #ddd;
+}
