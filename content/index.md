@@ -1,27 +1,17 @@
 ---
-title: 'Hem'`
+title: 'Hem'
 ---
 
 # Min me-sida i kursen oophp
 
-Detta innehåll är skrivet i markdown och du hittar innehållet i filen `content/index.md`.
+[FIGURE src="image/me-hfn.jpg?w=400&a=0,0,11,0&cf&sharpen" class="right" caption="Bild på mig, innan en handbollsmatch"]
 
-[FIGURE src="image/me.jpg?w=400&a=4,27,11,0&cf&sharpen" class="right" caption="Bild på mig, ätandes glass och hållandes ett kort på någon jultillställning."]
+Jag heter Henrik Fredriksson och är uppvuxen i Getinge som ligger mellan Halmstad och Falkenberg på västkusten. Efter att ha jobbat 2 år i en elektronikproduktion efter gymnasiet så flyttade jag till Karlshamn 2005 för att studera medieteknik på BTH. Efter några års studier började även att studera matematk. Jag blev klar med grundutbildningen sommaren 2013 och på hösten samma år började jag jobba på matematikinstitutionen på BTH, Karlskrona. Arbetet består i dagsläget mestadels av undervisning i grundläggande kurser i matematik för blivande civil- och högskoleingejörer. Jag forskar även delvis inom tillämpad matematik. Forskningen handlar om att finna matematiska modeller för att strategiskt placera ut mätstationer för att effektivt mäta trafikflöden.
 
-Detta är min me-sida i kursen. Denna sidan innehåller en presentation av mig själv. Underhåll denna sidan under hela kursen och uppdatera den efter hand och behov.
+Nu har dock intresset att börja studera börjat vakna igen och har därför börjar
+studera webbprogrammering på BTH. Programmeringintresset har de senaste åren
+gått lite i vågor, men återkommer med jämna mellan i både arbete och
+fritidsintresse. Just nu tycker jag det är fantastiskt kul att programmera i
+JavaScript, men det kan bli trevligt med lite PHP som omväxling.
 
-Så, en presentation en bra början. Skriv några ord om dig själv. Jag börjar.
-
-Mitt namn är Mikael Roos. Född och uppvuxen i Bankeryd, Småland, strax utanför Jönköping, i ett villaområde som byggdes upp samtidigt som vi flyttade in där. Jag gillade landhockey och har spelat bandy och hockey samt gått bowlinggymnasiet i Nässjö. Jag har varit städare, diskare, kallskänka, servitör och kock. På ett bananskal landade jag i Ronneby när jag började högskolan 1990 där och nu är jag kvar med fru, barn och så vidare.
-
-Programmering har alltid intresserat mig sedan 13-årsåldern och min första dator var en Spectravideo 328 med bandspelare.
-
-Om jag skall nämna någon hobby, förutom webbprogrammering, så får det bli att bära sten på sommarstugetomten, och det finns sten så det räcker och blir över.
-
-Till och från får jag för mig att börja på lite hobbies, ett år satsade jag på pokerspel, ett annat år var det geocaching, sedan turfing och nu på sistone verkar släktforskning lite spännande. Annars kan jag alltid koda på något av mina opensource-projekt, det finns och blir över.
-
-Vill du läsa mer om vad jag jobbat med så kan du kika på min [Linkedin-profil](https://www.linkedin.com/in/pt90mr/).
-
-Vi syns och hörs i forum och chatt!
-
-/Mikael
+När jag inte jobbar eller studerar så ägnas övrig tid åt idrott. Jag är bland annat ledare för ett ungdomslag i Karlskrona Handboll. Helgerna spenderas därför oftast i en inomhushall någonstans i Blekinge eller Småland. Helst en med kaffekopp i ena handen.
