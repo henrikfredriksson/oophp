@@ -39,7 +39,7 @@ return [
                 "class" => "large",
                 // "siteLogo"      => "image/theme/leaf_256x256.png",
                 "siteLogo"      => "image/theme/php-logo.png",
-                "siteLogoAlt"   => "Löv",
+                "siteLogoAlt"   => "PHP",
             ],
         ],
         [
@@ -50,7 +50,7 @@ return [
                 "siteLogoText"  => "oophp",
                 // "siteLogoTextIcon" => "image/theme/leaf_40x40.png",
                 "siteLogoTextIcon" => "image/theme/php-logo-small.png",
-                "siteLogoTextIconAlt" => "Löv-bild",
+                "siteLogoTextIconAlt" => "PHP-bild",
             ],
         ],
         [
