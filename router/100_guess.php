@@ -32,14 +32,9 @@ $app->router->post("guess/play", function () use ($app) {
     $doInit  = $_POST["doInit"] ?? null;
     $doCheat = $_POST["doCheat"] ?? null;
     $number  = $_POST["number"] ?? null;
+    $tries   = $_POST["tries"] ?? null;
 
-    if ($number) {
-        $number = (int)$number;
-    }
-
-    $tries = $_POST["tries"] ?? null;
-
-    // $_SESSION["res"] = null;
+    $_SESSION = null;
 
     if ($doGuess) {
         $game = new Hfn\Guess\Guess($number, $tries);
@@ -50,20 +45,19 @@ $app->router->post("guess/play", function () use ($app) {
             $error = "<p>Guess must be between 1 and 100</p>";
         }
 
-        $_SESSION["number"] = $game->number();
-        $_SESSION["tries"] = $game->tries();
-        $_SESSION["res"] = $res ?? null;
-        $_SESSION["doGuess"] = $doGuess ?? null;
-        $_SESSION["error"] = $error ?? null;
+        $_SESSION["number"]       = $game->number();
+        $_SESSION["tries"]        = $game->tries();
+        $_SESSION["res"]          = $res ?? null;
+        $_SESSION["doGuess"]      = $doGuess ?? null;
+        $_SESSION["error"]        = $error ?? null;
         $_SESSION["game_finished"] = $game->completed();
     } elseif ($doInit) {
         $game = new Hfn\Guess\Guess();
-        $_SESSION = null;
         $_SESSION["number"] = $game->number();
         $_SESSION["tries"] = $game->tries();
     }
 
-     $_SESSION["doCheat"] = $_POST["doCheat"] ?? null;
+    $_SESSION["doCheat"] = $_POST["doCheat"] ?? null;
 
 
     return $app->response->redirect("guess/play");
@@ -76,15 +70,14 @@ $app->router->post("guess/play", function () use ($app) {
 $app->router->get("guess/play", function () use ($app) {
     $title = "Guess game";
 
-
     $data = [
-        "guess"   => $_SESSION["guess"] ?? null,
-        "res"     => $_SESSION["res"] ?? null,
-        "number"  => $_SESSION["number"] ?? null,
-        "doCheat" => $_SESSION["doCheat"] ?? null,
-        "doGuess" => $_SESSION["doGuess"] ?? null,
-        "tries"   => $_SESSION["tries"] ?? null,
-        "error"   => $_SESSION["error"] ?? null,
+        "guess"        => $_SESSION["guess"] ?? null,
+        "res"          => $_SESSION["res"] ?? null,
+        "number"       => $_SESSION["number"] ?? null,
+        "doCheat"      => $_SESSION["doCheat"] ?? null,
+        "doGuess"      => $_SESSION["doGuess"] ?? null,
+        "tries"        => $_SESSION["tries"] ?? null,
+        "error"        => $_SESSION["error"] ?? null,
         "game_finished" => $_SESSION["game_finished"] ?? false,
     ];
 

@@ -22,7 +22,8 @@ return [
                 // Change here to set another default stylesheet
                 // "css/dbwebb-se.min.css",
                 //"css/another.min.css",
-                "css/my.min.css",
+                //"css/my.min.css",
+                "css/dbwebb-se_v3.min.css",
             ],
             "javascripts" => [
                 "js/responsive-menu.js",

@@ -24,7 +24,6 @@ class Guess
      * @param int $tries  Number of tries a guess has been made,
      *                    default 6.
      */
-
     public function __construct(int $number = -1, int $tries = 6)
     {
         $this->number = $number;
@@ -51,7 +50,6 @@ class Guess
     {
         $this->number = rand(1, 100);
     }
-
 
 
 
