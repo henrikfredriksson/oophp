@@ -98,12 +98,7 @@ input[type='submit']:active {
     margin: 0 auto;
 }
 
-#header {
-    margin: 0 auto;
-    position: fixed;
-    top: 0;
-    margin-bottom: 10px;
-}
+
 
 a,
 a:visited {
@@ -114,7 +109,7 @@ a:visited {
 </style>
 
 <div id="container">
-    <div id="title">
+    <div>
         <h1>Guess my number</h1>
     </div>
     <div id="form">

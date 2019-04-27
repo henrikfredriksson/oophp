@@ -36,7 +36,6 @@ class Guess
             if ($number == -1) {
                 $this->random();
             }
-
         }
     }
 
