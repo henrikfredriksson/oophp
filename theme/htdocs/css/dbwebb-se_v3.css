@@ -6601,8 +6601,3 @@ input[type='submit']:active {
   width: 700px;
   margin: 0 auto;
 }
-a,
-a:visited {
-  color: #2a6477;
-  text-decoration: none;
-}
