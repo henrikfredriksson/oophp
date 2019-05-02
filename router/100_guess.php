@@ -36,8 +36,13 @@ $app->router->post("guess/play", function () use ($app) {
 
     $_SESSION = null;
 
-    if ($doGuess) {
+
+
+    $_SESSION["doCheat"] = $_POST["doCheat"] ?? null;
+
+    if ($doGuess || $doCheat) {
         $game = new Hfn\Guess\Guess($number, $tries);
+
 
         try {
             $res = $game->makeGuess($guess);
@@ -57,7 +62,9 @@ $app->router->post("guess/play", function () use ($app) {
         $_SESSION["tries"] = $game->tries();
     }
 
-    $_SESSION["doCheat"] = $_POST["doCheat"] ?? null;
+
+
+
 
 
     return $app->response->redirect("guess/play");
@@ -78,7 +85,7 @@ $app->router->get("guess/play", function () use ($app) {
         "doGuess"      => $_SESSION["doGuess"] ?? null,
         "tries"        => $_SESSION["tries"] ?? null,
         "error"        => $_SESSION["error"] ?? null,
-        "game_finished" => $_SESSION["game_finished"] ?? false,
+        "game_finished" => $_SESSION["game_finished"] ?? null,
     ];
 
     $app->page->add("guess/play", $data);

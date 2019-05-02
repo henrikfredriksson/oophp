@@ -7,7 +7,8 @@ namespace Anax\View;
  */
 
 // Show incoming variables and view helper functions
-// echo showEnvironment(get_defined_vars(), get_defined_functions());
+echo showEnvironment(get_defined_vars(), get_defined_functions());
+
 
 
 ?>
@@ -19,7 +20,7 @@ namespace Anax\View;
 
 <div id="container">
     <div>
-        <h1>Guess my number</h1>
+        <h1>Guess my number </h1>
     </div>
     <div id="form">
     <!-- <form method="POST" action="post-process.php"> -->
@@ -62,7 +63,6 @@ namespace Anax\View;
         <input type="hidden" name="number" value="<?= $number ?>">
     </form>
     </div>
-
     <div id="output">
     <?php
     if ($error) {
