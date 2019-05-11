@@ -1,5 +1,6 @@
 <?php
 
+namespace Hfn\Dice100;
 
 /**
  * Create routes using $app programming style.
@@ -7,118 +8,102 @@
 //var_dump(array_keys(get_defined_vars()));
 
 
-
 /**
- * Init the game and redirect to play the game
+ * Reset the session and redirect to createGame
  */
 $app->router->get("dice/init", function () use ($app) {
-    // init the sessions for the gamestart
-    $title = "Tärningsspelet 100";
-    $dice = new \Hfn\Dice100\Dice();
-    $data = [
-        "class" => "hello-world",
-        "content" => "Hello World in " . __FILE__,
-        "dice" => $dice,
-    ];
+    // Reset the session
+    $app->session->destroy();
+    $app->session->start();
 
-
-
-    $app->page->add("dice/play", $data);
-
-
-    return $app->page->render([
-        "title" => $title,
-    ]);
+    return $app->response->redirect("dice/createGame");
 });
 
 
-// $app->router->get("lek/hello-world-page", function () use ($app) {
-//     $title = "Hello World as a page";
-//     $data = [
-//         "class" => "hello-world",
-//         "content" => "Hello World in " . __FILE__,
-//     ];
+/**
+ * Creates a new game, save players in session and redirects to play
+ */
+$app->router->get("dice/createGame", function () use ($app) {
+    $game = new Game(2, 2);
 
-//     $app->page->add("anax/v2/article/default", $data);
+    $app->session->set("players", $game->getPlayers());
 
-//     return $app->page->render([
-//         "title" => $title,
-//     ]);
-// });
+    $app->session->set("currentPlayer", 0);
+    $app->session->set("currentSum", 0);
 
+    return $app->response->redirect("dice/play");
+});
 
-// /**
-//  * Play the game - make a guess
-//  */
-// $app->router->post("guess/play", function () use ($app) {
+/**
+ * Handle post request for the game
+ */
+$app->router->post("dice/play", function () use ($app) {
+    $request = new \Anax\Request\Request();
 
-//     $guess   = $_POST["guess"] ?? null;
-//     $doGuess = $_POST["doGuess"] ?? null;
-//     $doInit  = $_POST["doInit"] ?? null;
-//     $doCheat = $_POST["doCheat"] ?? null;
-//     $number  = $_POST["number"] ?? null;
-//     $tries   = $_POST["tries"] ?? null;
+    $players = $app->session->get("players");
 
-//     $_SESSION = null;
+    $game = new Game(2, 2, $players, $app->session);
 
+    $doRoll  = $request->getPost("doRoll", null);
+    $doSave  = $request->getPost("doSave", null);
+    $doInit  = $request->getPost("doInit", null);
 
+    $current = $app->session->get("currentPlayer");
 
-//     $_SESSION["doCheat"] = $_POST["doCheat"] ?? null;
+    if ($doInit) {
+        return $app->response->redirect("dice-game");
+    }
 
-//     if ($doGuess || $doCheat) {
-//         $game = new Hfn\Guess\Guess($number, $tries);
+    if ($doRoll) {
+        $game->play($current);
+    }
 
+    if ($doSave) {
+        $game->save($current);
+    }
 
-//         try {
-//             $res = $game->makeGuess($guess);
-//         } catch (Hfn\Guess\GuessException $e) {
-//             $error = "<p>Guess must be between 1 and 100</p>";
-//         }
+    $app->session->set("players", $game->getPlayers());
 
-//         $_SESSION["number"]       = $game->number();
-//         $_SESSION["tries"]        = $game->tries();
-//         $_SESSION["res"]          = $res ?? null;
-//         $_SESSION["doGuess"]      = $doGuess ?? null;
-//         $_SESSION["error"]        = $error ?? null;
-//         $_SESSION["game_finished"] = $game->completed();
-//     } elseif ($doInit) {
-//         $game = new Hfn\Guess\Guess();
-//         $_SESSION["number"] = $game->number();
-//         $_SESSION["tries"] = $game->tries();
-//     }
+    return $app->response->redirect("dice/nextplayer");
+});
 
 
+/**
+ * Updates the next playe
+ */
+$app->router->get("dice/nextplayer", function () use ($app) {
+
+    if (!$app->session->get("continue")) {
+        $current = $app->session->get("currentPlayer");
+        $app->session->set("currentPlayer", ($current + 1) % 2);
+    }
+
+    return $app->response->redirect("dice/play");
+});
 
 
+/**
+ * Render the page
+ */
+$app->router->get("dice/play", function () use ($app) {
+    $title = "Tärningsspelet 100";
 
+    $data = [
+        "continue"      => $app->session->get("continue") ?? null,
+        "currentSum"    => $app->session->get("currentSum") ?? null,
+        "currentPlayer" => $app->session->get("currentPlayer") ?? null,
+        "players"       => $app->session->get("players") ?? null,
+        // "series"        => $app->session->get("series") ?? null,
+        "sum"           => $app->session->get("sum") ?? null,
+        "graphics"      => $app->session->get("graphics") ?? null,
+    ];
 
-//     return $app->response->redirect("guess/play");
-// });
+    $app->page->add("dice/play", $data);
+    // $app->page->add("dice/debug", [
+    //     "when" => "AFTER"
+    // ]);
 
-
-// /**
-//  * Play the game - show game status
-//  */
-// $app->router->get("guess/play", function () use ($app) {
-//     $title = "Guess game";
-
-//     $data = [
-//         "guess"        => $_SESSION["guess"] ?? null,
-//         "res"          => $_SESSION["res"] ?? null,
-//         "number"       => $_SESSION["number"] ?? null,
-//         "doCheat"      => $_SESSION["doCheat"] ?? null,
-//         "doGuess"      => $_SESSION["doGuess"] ?? null,
-//         "tries"        => $_SESSION["tries"] ?? null,
-//         "error"        => $_SESSION["error"] ?? null,
-//         "game_finished" => $_SESSION["game_finished"] ?? null,
-//     ];
-
-//     $app->page->add("guess/play", $data);
-//     $app->page->add("guess/debug", [
-//         "when" => "AFTER"
-//     ]);
-
-//     return $app->page->render([
-//         "title" => $title,
-//     ]);
-// });
+    return $app->page->render([
+            "title" => $title,
+        ]);
+});
