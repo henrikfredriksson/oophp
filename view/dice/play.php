@@ -98,7 +98,9 @@ require __DIR__ . "/toRGB.php";
         <?php if (!$players) : ?>
             <h2>Starta ett nytt spel</h2>
             <p>Det ser ut som du försöker nå spelsidan utan att ha startat ett nytt spel</p>
+             <form method="POST">
             <input type="submit" name="doInit" value="Nytt spel">
+            </form>
 
         <?php else : ?>
             <?php if ($players[0]->getScore() + $players[1]->getScore() > 0) : ?>
